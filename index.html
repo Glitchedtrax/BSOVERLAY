@@ -54,6 +54,13 @@
   #song-duration { font-size:11px; color:rgba(255,255,255,0.3); }
   #song-duration span { color:rgba(255,255,255,0.6); font-weight:600; }
 
+  .badge { font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:.5px; }
+  .diff-ExpertPlus{ background:rgba(160,32,240,0.3);  color:#c77dff; border:1px solid rgba(160,32,240,0.4); }
+  .diff-Expert    { background:rgba(220,50,50,0.25);  color:#ff6b6b; border:1px solid rgba(220,50,50,0.35); }
+  .diff-Hard      { background:rgba(255,120,0,0.25);  color:#ffa040; border:1px solid rgba(255,120,0,0.35); }
+  .diff-Normal    { background:rgba(50,180,120,0.25); color:#4dd9a0; border:1px solid rgba(50,180,120,0.35); }
+  .diff-Easy      { background:rgba(50,150,240,0.2);  color:#60b4ff; border:1px solid rgba(50,150,240,0.3); }
+
   /* ── PLAYER CARD ── */
   #player-card {
     position:absolute; top:40px; right:40px; width:300px;
@@ -102,6 +109,7 @@
       <div id="song-name">—</div>
       <div id="song-mapper">Mapped by <span id="mapper-name">—</span></div>
       <div id="song-duration">Duration: <span id="time-total">0:00</span></div>
+      <div style="margin-top:6px"><span class="badge diff-ExpertPlus" id="diff-badge">Expert+</span></div>
     </div>
   </div>
 </div>
@@ -170,6 +178,11 @@ function applyMap(info) {
   $('mapper-name').textContent = info.mapper || 'Unknown';
   $('time-total').textContent  = fmtTime(totalMs / 1000);
 
+  const diffMap = { ExpertPlus:'diff-ExpertPlus', Expert:'diff-Expert', Hard:'diff-Hard', Normal:'diff-Normal', Easy:'diff-Easy' };
+  const db = $('diff-badge');
+  db.textContent = info.difficulty === 'ExpertPlus' ? 'Expert+' : (info.difficulty || '?');
+  db.className   = 'badge ' + (diffMap[info.difficulty] || 'diff-Expert');
+
   const cover = $('song-cover');
   if (info.coverRaw && info.coverRaw.length > 100) {
     cover.innerHTML = `<img src="data:image/png;base64,${info.coverRaw}" alt="cover">`;
@@ -208,7 +221,7 @@ async function loadPlayer() {
     $('player-rank-badge').textContent = '★ Global #' + (d.rank || '?').toLocaleString();
     $('pv-pp').textContent    = d.pp ? Math.round(d.pp).toLocaleString() + ' pp' : '—';
     $('pv-acc').textContent   = d.scoreStats?.averageRankedAccuracy
-                                  ? (d.scoreStats.averageRankedAccuracy * 100).toFixed(2) + '%' : '—';
+                                  ? d.scoreStats.averageRankedAccuracy.toFixed(2) + '%' : '—';
     $('pv-plays').textContent = d.scoreStats?.totalPlayCount
                                   ? d.scoreStats.totalPlayCount.toLocaleString() : '—';
     $('pv-toppp').textContent = d.scoreStats?.topPP
