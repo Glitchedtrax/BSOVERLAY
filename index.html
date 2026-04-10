@@ -18,7 +18,7 @@
   #song-card {
     position: absolute;
     bottom: 40px; left: 40px;
-    width: 430px;
+    width: 340px;
     background: rgba(15,15,20,0.88);
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.08);
@@ -40,64 +40,19 @@
   #song-main { display:flex; gap:14px; padding:14px 16px; align-items:center; }
 
   #song-cover {
-    width:72px; height:72px; border-radius:8px;
+    width:60px; height:60px; border-radius:8px;
     flex-shrink:0; overflow:hidden;
     background: linear-gradient(135deg,#1a1a2e,#2d1b69);
-    display:flex; align-items:center; justify-content:center; font-size:28px;
+    display:flex; align-items:center; justify-content:center; font-size:24px;
   }
   #song-cover img { width:100%; height:100%; object-fit:cover; display:block; }
 
   #song-info { flex:1; min-width:0; }
-  #song-name  { font-size:15px; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px; }
-  #song-artist{ font-size:12px; color:rgba(255,255,255,0.5); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:4px; }
-  #song-mapper{ font-size:11px; color:rgba(255,255,255,0.3); margin-bottom:8px; }
+  #song-name   { font-size:14px; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:4px; }
+  #song-mapper { font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
   #song-mapper span { color:#a78bfa; }
-
-  #song-badges { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
-  .badge { font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:.5px; }
-  .diff-ExpertPlus{ background:rgba(160,32,240,0.3);  color:#c77dff; border:1px solid rgba(160,32,240,0.4); }
-  .diff-Expert    { background:rgba(220,50,50,0.25);  color:#ff6b6b; border:1px solid rgba(220,50,50,0.35); }
-  .diff-Hard      { background:rgba(255,120,0,0.25);  color:#ffa040; border:1px solid rgba(255,120,0,0.35); }
-  .diff-Normal    { background:rgba(50,180,120,0.25); color:#4dd9a0; border:1px solid rgba(50,180,120,0.35); }
-  .diff-Easy      { background:rgba(50,150,240,0.2);  color:#60b4ff; border:1px solid rgba(50,150,240,0.3); }
-  .badge-bsr { background:rgba(99,179,237,0.18);  color:#63b3ed; border:1px solid rgba(99,179,237,0.3); }
-  .badge-pp  { background:rgba(252,211,77,0.15);  color:#fcd34d; border:1px solid rgba(252,211,77,0.25); }
-
-  #song-stats {
-    display:grid; grid-template-columns:repeat(4,1fr);
-    border-top:1px solid rgba(255,255,255,0.07);
-    padding:10px 16px;
-  }
-  .stat-item { display:flex; flex-direction:column; align-items:center; }
-  .stat-label { font-size:9px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:.5px; margin-bottom:2px; }
-  .stat-value { font-size:13px; font-weight:700; color:#fff; }
-  .stat-value.accent { color:#a78bfa; }
-  .stat-value.gold   { color:#fcd34d; }
-
-  #song-time { display:flex; justify-content:space-between; padding:0 16px 10px; font-size:10px; color:rgba(255,255,255,0.3); }
-
-  /* ── SCORE ── */
-  #score-display {
-    position:absolute; top:40px; left:50%; transform:translateX(-50%);
-    display:flex; flex-direction:column; align-items:center; gap:4px;
-    transition: opacity 0.4s;
-  }
-  #score-display.hidden { opacity:0; pointer-events:none; }
-  #score-val  { font-size:44px; font-weight:800; color:#fff; text-shadow:0 0 20px rgba(167,139,250,0.5); letter-spacing:2px; font-variant-numeric:tabular-nums; }
-  #score-acc  { font-size:22px; font-weight:700; color:#a78bfa; }
-  #score-meta { font-size:14px; color:rgba(255,255,255,0.5); display:flex; gap:16px; }
-  #score-meta .good { color:#68d391; }
-  #score-meta .bad  { color:#f87171; }
-
-  /* ── HEALTH ── */
-  #health-bar-wrap {
-    position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
-    width:300px; transition: opacity 0.4s;
-  }
-  #health-bar-wrap.hidden { opacity:0; }
-  #health-label { font-size:10px; color:rgba(255,255,255,0.35); text-align:center; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px; }
-  #health-bar-bg { height:6px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden; }
-  #health-bar-fill { height:100%; background:linear-gradient(90deg,#f87171,#fcd34d,#68d391); border-radius:3px; width:50%; transition:width 0.3s; }
+  #song-duration { font-size:11px; color:rgba(255,255,255,0.3); }
+  #song-duration span { color:rgba(255,255,255,0.6); font-weight:600; }
 
   /* ── PLAYER CARD ── */
   #player-card {
@@ -106,7 +61,10 @@
     border:1px solid rgba(255,255,255,0.08);
     padding:16px; box-shadow:0 8px 32px rgba(0,0,0,0.5);
     display:flex; flex-direction:column; gap:12px;
+    transition: opacity 0.4s, transform 0.4s;
   }
+  #player-card.hidden { opacity:0; transform:translateX(10px); pointer-events:none; }
+
   #player-top { display:flex; gap:12px; align-items:center; }
   #player-avatar {
     width:52px; height:52px; border-radius:50%;
@@ -131,69 +89,24 @@
   .psval.purple { color:#a78bfa; }
   .psval.gold   { color:#fcd34d; }
   .psval.green  { color:#68d391; }
-
-  /* ── STATUS ── */
-  #status-bar {
-    position:absolute; bottom:40px; right:40px;
-    display:flex; align-items:center; gap:8px;
-    background:rgba(15,15,20,0.75); border:1px solid rgba(255,255,255,0.07);
-    border-radius:20px; padding:6px 14px;
-  }
-  .dot { width:7px; height:7px; border-radius:50%; background:#888; transition:background 0.3s; }
-  .dot.connected { background:#68d391; animation:blink 2s infinite; }
-  .dot.error     { background:#f87171; }
-  .dot.waiting   { background:#fcd34d; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
-  #status-text { font-size:11px; color:rgba(255,255,255,0.45); }
 </style>
 </head>
 <body>
 
-<!-- SONG CARD -->
+<!-- SONG CARD (shown only while playing) -->
 <div id="song-card" class="hidden">
   <div id="song-progress-bar"><div id="song-progress-fill"></div></div>
   <div id="song-main">
     <div id="song-cover"><span id="cover-fallback">🎵</span></div>
     <div id="song-info">
-      <div id="song-name">Waiting for Beat Saber…</div>
-      <div id="song-artist"></div>
+      <div id="song-name">—</div>
       <div id="song-mapper">Mapped by <span id="mapper-name">—</span></div>
-      <div id="song-badges">
-        <span class="badge diff-ExpertPlus" id="diff-badge">Expert+</span>
-        <span class="badge badge-bsr" id="bsr-badge" style="display:none"></span>
-        <span class="badge badge-pp"  id="pp-badge"  style="display:none"></span>
-      </div>
+      <div id="song-duration">Duration: <span id="time-total">0:00</span></div>
     </div>
   </div>
-  <div id="song-stats">
-    <div class="stat-item"><span class="stat-label">BPM</span><span class="stat-value accent" id="stat-bpm">—</span></div>
-    <div class="stat-item"><span class="stat-label">Duration</span><span class="stat-value" id="stat-dur">—</span></div>
-    <div class="stat-item"><span class="stat-label">Combo</span><span class="stat-value" id="stat-combo">0</span></div>
-    <div class="stat-item"><span class="stat-label">Misses</span><span class="stat-value gold" id="stat-miss">0</span></div>
-  </div>
-  <div id="song-time">
-    <span id="time-current">0:00</span>
-    <span id="time-total">0:00</span>
-  </div>
 </div>
 
-<!-- LIVE SCORE -->
-<div id="score-display" class="hidden">
-  <div id="score-val">0</div>
-  <div id="score-acc">100.00%</div>
-  <div id="score-meta">
-    <span id="meta-combo">0x combo</span>
-    <span id="meta-miss" class="good">FC</span>
-  </div>
-</div>
-
-<!-- HEALTH BAR -->
-<div id="health-bar-wrap" class="hidden">
-  <div id="health-label">Health</div>
-  <div id="health-bar-bg"><div id="health-bar-fill"></div></div>
-</div>
-
-<!-- PLAYER CARD -->
+<!-- PLAYER CARD (shown only in menu) -->
 <div id="player-card">
   <div id="player-top">
     <div id="player-avatar">
@@ -214,18 +127,9 @@
   </div>
 </div>
 
-<!-- STATUS BAR -->
-<div id="status-bar">
-  <div class="dot waiting" id="ws-dot"></div>
-  <div id="status-text">Connecting to BeatSaberPlus…</div>
-</div>
-
 <script>
-// ─── CONFIG ──────────────────────────────────────────────────────────
 const PLAYER_ID = '76561198088453367';
 const BSP_WS    = 'ws://localhost:2947/socket';
-
-// ─── HELPERS ─────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 
 function fmtTime(sec) {
@@ -233,22 +137,53 @@ function fmtTime(sec) {
   return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
 }
 
-function diffClass(d) {
-  return { ExpertPlus:'diff-ExpertPlus', Expert:'diff-Expert', Hard:'diff-Hard', Normal:'diff-Normal', Easy:'diff-Easy' }[d] || 'diff-Expert';
+// ── SHOW / HIDE ──────────────────────────────────────────────────────
+function showPlaying() {
+  $('song-card').classList.remove('hidden');
+  $('player-card').classList.add('hidden');
 }
 
-function diffLabel(d) { return d === 'ExpertPlus' ? 'Expert+' : (d || '?'); }
-
-function setStatus(cls, txt) {
-  $('ws-dot').className = 'dot ' + cls;
-  $('status-text').textContent = txt;
+function showMenu() {
+  $('song-card').classList.add('hidden');
+  $('player-card').classList.remove('hidden');
+  clearInterval(ticker); ticker = null;
 }
 
-// ─── SCORESABER PLAYER ────────────────────────────────────────────────
+// ── PROGRESS TICKER ──────────────────────────────────────────────────
+let totalMs = 0, elapsed = 0, ticker = null;
+
+function startTicker() {
+  clearInterval(ticker);
+  ticker = setInterval(() => {
+    elapsed = Math.min(elapsed + 100, totalMs);
+    const pct = totalMs ? (elapsed / totalMs) * 100 : 0;
+    $('song-progress-fill').style.width = Math.min(pct, 100).toFixed(2) + '%';
+  }, 100);
+}
+
+// ── MAP INFO ─────────────────────────────────────────────────────────
+function applyMap(info) {
+  totalMs = info.duration || 0;
+  elapsed = (info.time || 0) * 1000;
+
+  $('song-name').textContent   = info.name   || '—';
+  $('mapper-name').textContent = info.mapper || 'Unknown';
+  $('time-total').textContent  = fmtTime(totalMs / 1000);
+
+  const cover = $('song-cover');
+  if (info.coverRaw && info.coverRaw.length > 100) {
+    cover.innerHTML = `<img src="data:image/png;base64,${info.coverRaw}" alt="cover">`;
+  } else {
+    cover.innerHTML = '<span style="font-size:24px">🎵</span>';
+  }
+
+  showPlaying();
+  startTicker();
+}
+
+// ── SCORESABER ───────────────────────────────────────────────────────
 async function loadPlayer() {
   const SS_URL = 'https://scoresaber.com/api/player/' + PLAYER_ID + '/full';
-  // When hosted on GitHub Pages (HTTPS), direct fetch works fine.
-  // Fallback proxies handle edge cases.
   const attempts = [
     () => fetch(SS_URL),
     () => fetch('https://corsproxy.io/?' + encodeURIComponent(SS_URL)),
@@ -267,10 +202,9 @@ async function loadPlayer() {
   }
 
   try {
-    if (!d || !d.name) throw new Error('all attempts failed');
-
-    $('player-name').textContent    = d.name || 'Unknown';
-    $('player-country').textContent = d.country ? '🌍 ' + d.country : '';
+    if (!d || !d.name) throw new Error('failed');
+    $('player-name').textContent       = d.name || 'Unknown';
+    $('player-country').textContent    = d.country ? '🌍 ' + d.country : '';
     $('player-rank-badge').textContent = '★ Global #' + (d.rank || '?').toLocaleString();
     $('pv-pp').textContent    = d.pp ? Math.round(d.pp).toLocaleString() + ' pp' : '—';
     $('pv-acc').textContent   = d.scoreStats?.averageRankedAccuracy
@@ -279,181 +213,53 @@ async function loadPlayer() {
                                   ? d.scoreStats.totalPlayCount.toLocaleString() : '—';
     $('pv-toppp').textContent = d.scoreStats?.topPP
                                   ? Math.round(d.scoreStats.topPP).toLocaleString() + ' pp' : '—';
-
     if (d.profilePicture) {
       const img = $('player-avatar-img');
       img.src = d.profilePicture;
-      img.onload = () => {
-        img.style.display = 'block';
-        $('player-avatar-fb').style.display = 'none';
-      };
+      img.onload = () => { img.style.display = 'block'; $('player-avatar-fb').style.display = 'none'; };
     }
   } catch(e) {
     $('player-name').textContent = 'ScoreSaber offline';
-    console.warn('ScoreSaber:', e.message);
   }
 }
 
-// ─── GAME STATE ───────────────────────────────────────────────────────
-let totalMs = 0, elapsed = 0, ticker = null;
-
-function showHUD() {
-  $('song-card').classList.remove('hidden');
-  $('score-display').classList.remove('hidden');
-  $('health-bar-wrap').classList.remove('hidden');
-}
-
-function hideHUD() {
-  $('song-card').classList.add('hidden');
-  $('score-display').classList.add('hidden');
-  $('health-bar-wrap').classList.add('hidden');
-  clearInterval(ticker); ticker = null;
-}
-
-function startTicker() {
-  clearInterval(ticker);
-  ticker = setInterval(() => {
-    elapsed = Math.min(elapsed + 100, totalMs);
-    updateBar();
-  }, 100);
-}
-
-function updateBar() {
-  const pct = totalMs ? (elapsed / totalMs) * 100 : 0;
-  $('song-progress-fill').style.width = Math.min(pct, 100).toFixed(2) + '%';
-  $('time-current').textContent = fmtTime(elapsed / 1000);
-}
-
-// ─── MAP INFO ─────────────────────────────────────────────────────────
-function applyMap(info) {
-  totalMs = info.duration || 0;
-  elapsed = (info.time || 0) * 1000;
-
-  $('song-name').textContent   = info.name   || '—';
-  $('song-artist').textContent = info.artist || '';
-  $('mapper-name').textContent = info.mapper || 'Unknown';
-  $('stat-bpm').textContent    = info.BPM ? Math.round(info.BPM) : '—';
-  $('stat-dur').textContent    = fmtTime(totalMs / 1000);
-  $('time-total').textContent  = fmtTime(totalMs / 1000);
-
-  // Difficulty
-  const db = $('diff-badge');
-  db.textContent = diffLabel(info.difficulty);
-  db.className   = 'badge ' + diffClass(info.difficulty);
-
-  // BSR key
-  const bsr = $('bsr-badge');
-  if (info.BSRKey) { bsr.textContent = '!bsr ' + info.BSRKey; bsr.style.display = ''; }
-  else               bsr.style.display = 'none';
-
-  // PP badge
-  const ppb = $('pp-badge');
-  if (info.PP > 0) { ppb.textContent = Math.round(info.PP) + ' PP'; ppb.style.display = ''; }
-  else               ppb.style.display = 'none';
-
-  // Album art (coverRaw is base64 PNG sent by BS+)
-  const cover = $('song-cover');
-  if (info.coverRaw && info.coverRaw.length > 100) {
-    cover.innerHTML = `<img src="data:image/png;base64,${info.coverRaw}" alt="cover">`;
-  } else {
-    cover.innerHTML = '<span id="cover-fallback" style="font-size:28px">🎵</span>';
-  }
-
-  // Reset score display
-  $('score-val').textContent  = '0';
-  $('score-acc').textContent  = '100.00%';
-  $('score-acc').style.color  = '#a78bfa';
-  $('stat-combo').textContent = '0';
-  $('stat-miss').textContent  = '0';
-  $('meta-combo').textContent = '0x combo';
-  $('meta-miss').textContent  = 'FC';
-  $('meta-miss').className    = 'good';
-  $('health-bar-fill').style.width = '50%';
-
-  showHUD();
-  startTicker();
-}
-
-// ─── SCORE EVENT ──────────────────────────────────────────────────────
-function applyScore(s) {
-  elapsed = (s.time || 0) * 1000;
-  updateBar();
-
-  $('score-val').textContent  = (s.score || 0).toLocaleString();
-  $('stat-combo').textContent = s.combo || 0;
-  $('stat-miss').textContent  = s.missCount || 0;
-
-  const acc = typeof s.accuracy === 'number' ? s.accuracy : 1.0;
-  $('score-acc').textContent  = (acc * 100).toFixed(2) + '%';
-
-  // Colour by accuracy rank
-  let color = '#68d391';
-  if      (acc >= 0.9)  color = '#a78bfa';
-  else if (acc >= 0.8)  color = '#fcd34d';
-  else if (acc >= 0.65) color = '#68d391';
-  else if (acc >= 0.5)  color = '#fb923c';
-  else                  color = '#f87171';
-  $('score-acc').style.color = color;
-
-  $('meta-combo').textContent = (s.combo || 0) + 'x combo';
-  const m = $('meta-miss');
-  if (!s.missCount) { m.textContent = 'FC'; m.className = 'good'; }
-  else { m.textContent = s.missCount + ' miss' + (s.missCount > 1 ? 'es' : ''); m.className = 'bad'; }
-
-  const hp = typeof s.currentHealth === 'number' ? s.currentHealth : 0.5;
-  $('health-bar-fill').style.width = (hp * 100).toFixed(1) + '%';
-}
-
-// ─── WEBSOCKET ────────────────────────────────────────────────────────
+// ── WEBSOCKET ────────────────────────────────────────────────────────
 let ws, retryTimer;
 
 function connect() {
   clearTimeout(retryTimer);
-  setStatus('waiting', 'Connecting to BeatSaberPlus…');
   try { ws = new WebSocket(BSP_WS); } catch(_) { retry(); return; }
-
-  ws.onopen = () => setStatus('connected', 'Connected · BeatSaberPlus');
 
   ws.onmessage = evt => {
     let msg;
     try { msg = JSON.parse(evt.data); } catch(_) { return; }
-
-    if (msg._type === 'handshake') {
-      setStatus('connected', 'BS+ · v' + (msg.gameVersion || '?'));
-      return;
-    }
-
     if (msg._type !== 'event') return;
-
     switch (msg._event) {
       case 'gameState':
-        if (msg.gameStateChanged === 'Menu') { hideHUD(); setStatus('connected', 'Menu · BeatSaberPlus'); }
+        if (msg.gameStateChanged === 'Menu') showMenu();
         break;
       case 'mapInfo':
         applyMap(msg.mapInfoChanged);
-        setStatus('connected', 'Playing · BeatSaberPlus');
         break;
       case 'score':
-        applyScore(msg.scoreEvent);
+        // keep progress bar in sync
+        if (msg.scoreEvent?.time) elapsed = msg.scoreEvent.time * 1000;
         break;
       case 'pause':
         clearInterval(ticker); ticker = null;
-        setStatus('connected', 'Paused · BeatSaberPlus');
         break;
       case 'resume':
         startTicker();
-        setStatus('connected', 'Playing · BeatSaberPlus');
         break;
     }
   };
 
   ws.onerror = () => {};
-  ws.onclose = () => { setStatus('error', 'Disconnected — retrying in 3s…'); hideHUD(); retry(); };
+  ws.onclose = () => { showMenu(); retry(); };
 }
 
 function retry() { retryTimer = setTimeout(connect, 3000); }
 
-// ─── BOOT ─────────────────────────────────────────────────────────────
 loadPlayer();
 connect();
 </script>
